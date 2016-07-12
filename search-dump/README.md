@@ -2,10 +2,9 @@ search-dump.sh
 ==============
 
 A simple script for searching through a dump of data, such as compromised
-credentials. It has been tested to work with GNU/Linux, MacOS, and Cygwin Bash.
-For a PowerShell version of this script, see
+credentials. It has been tested to work with GNU/Linux,BSD, MacOS, and Cygwin
+ Bash. For a PowerShell version of this script, see
 [Search-Dump.ps1](https://github.com/seanthegeek/powertools/blob/master/Search-Dump.ps1).
-It's slower.
 
 Assumptions
 -----------
