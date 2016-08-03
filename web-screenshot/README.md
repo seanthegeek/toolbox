@@ -64,7 +64,7 @@ Install Privioxy
 
 Configure Privioxy
 
-$ sudo nano /etc/privoxy/config
+    $ sudo nano /etc/privoxy/config
 
 Locate, and uncomment the following line:
 
@@ -106,7 +106,7 @@ save over it. You will receive a warning about loosing transparency, which is
 exactly what you want. Other image editors like GIMP and Adobe Photoshop
 also have options to disable transparency when saving PNGs.
 
-## Why is Privoxy used in between PhantomJS and Tor?
+### Why is Privoxy used in between PhantomJS and Tor?
 
 While PhantomJS is capable of using Tor's SOCKS5 proxy directly, PhantomJS does
 not return HTTP status codes or error details. Privoxy will return error
