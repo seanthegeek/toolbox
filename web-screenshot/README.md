@@ -71,17 +71,17 @@ Restart Privoxy:
 
 Install PhantomJS (the project's static build, **not** from a repository)
 
-$ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
-$ bunzip2 phantomjs-x.x.x-linux-x86_64.tar.bz2
-$ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/bin
+    $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
+    $ bunzip2 phantomjs-x.x.x-linux-x86_64.tar.bz2
+    $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/bin
 
 Install Selenium for Python
 
-$ sudo apt-get install python-pip
-$ sudo pip install selenium
+    $ sudo apt-get install python-pip
+    $ sudo pip install selenium
 
 Place screenshot.py in the system path, where all users can use it:
 
-$ sudo apt-get install git
-$ git clone https://github.com/seanthegeek/toolbox
-sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
+    $ sudo apt-get install git
+    $ git clone https://github.com/seanthegeek/toolbox
+    sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
