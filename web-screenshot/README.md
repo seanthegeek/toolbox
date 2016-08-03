@@ -84,4 +84,4 @@ Place `screenshot.py` in the system path, where all users can use it:
 
     $ sudo apt-get install git
     $ git clone https://github.com/seanthegeek/toolbox
-    sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
+    $ sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
