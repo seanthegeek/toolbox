@@ -33,7 +33,7 @@ you use Tor. Get permission if necessary.
 by checking the IP address against the
 [public list of exit nodes](https://check.torproject.org/exit-addresses). Some
 sites block these exit nodes, display different content, and/or alert
-administrators.
+server operators.
 
 Setup
 -----
