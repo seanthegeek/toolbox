@@ -22,8 +22,8 @@ screenshot.py
 
 
 
-Warnings
---------
+Tor warnings
+------------
 
 - Most corporate, university, and other shared networks have policies
 prohibiting the use of Tor for security reasons. Tor can help keep what you are
@@ -34,6 +34,11 @@ by checking the IP address against the
 [public list of exit nodes](https://check.torproject.org/exit-addresses). Some
 sites block these exit nodes, display different content, and/or alert
 server operators.
+
+Rather not use Tor? Skip the Tor and Privoxy parts of the setup, and remove the
+or modify the proxy options as needed in the `service_options` list, which is
+located near the top of `screenshot.py`. In that case, it is strongly advised
+to use a separate, unattributable connection.
 
 Setup
 -----
@@ -85,3 +90,25 @@ Place `screenshot.py` in the system path, where all users can use it:
     $ sudo apt-get install git
     $ git clone https://github.com/seanthegeek/toolbox
     $ sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
+
+FAQ
+---
+
+### Why is the background of the page black?
+
+If no background is specified by the web page, most browsers will render a
+white background. However, PhantomJS (the headless browser used by
+`screenshot.py`) will save a transparent background in that case, which  will
+appear black in many photo viewers, including the Windows photo viewer.
+
+The quickest way to fix this is to open the screenshot in Microsoft Paint, and
+save over it. You will receive a warning about loosing transparency, which is
+exactly what you want. Other image editors like GIMP and Adobe Photoshop
+also have options to disable transparency when saving PNGs.
+
+## Why is Privoxy used in between PhantomJS and Tor?
+
+While PhantomJS is capable of using Tor's SOCKS5 proxy directly, PhantomJS does
+not return HTTP status codes or error details. Privoxy will return error
+details to the browser as an HTML page, which will be captured in the
+screenshot.
