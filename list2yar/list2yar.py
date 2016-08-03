@@ -3,6 +3,8 @@
 """A simple script that generates a yara rule from a list of strings. It's
 useful for things like generating rules based on lists of domains."""
 
+from __future__ import print_function, unicode_literals
+
 """Copyright 2016 Sean Whalen
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,8 +18,6 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License."""
-
-from __future__ import print_function, unicode_literals
 
 from argparse import ArgumentParser
 from os.path import basename
