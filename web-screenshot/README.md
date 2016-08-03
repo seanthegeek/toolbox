@@ -80,7 +80,7 @@ Install Selenium for Python
     $ sudo apt-get install python-pip
     $ sudo pip install selenium
 
-Place screenshot.py in the system path, where all users can use it:
+Place `screenshot.py` in the system path, where all users can use it:
 
     $ sudo apt-get install git
     $ git clone https://github.com/seanthegeek/toolbox
