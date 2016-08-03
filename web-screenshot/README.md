@@ -56,3 +56,32 @@ https://www.torproject.org/docs/rpms.html.en
 Install Privioxy
 
     $ sudo apt-get install privoxy
+
+Configure Privioxy
+
+$ sudo nano /etc/privoxy/config
+
+Locate, and uncomment the following line:
+
+    #        forward-socks5t             /     127.0.0.1:9050 .
+
+Restart Privoxy:
+
+    $ sudo service privoxy restart
+
+Install PhantomJS (the project's static build, **not** from a repository)
+
+$ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
+$ bunzip2 phantomjs-x.x.x-linux-x86_64.tar.bz2
+$ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/bin
+
+Install Selenium for Python
+
+$ sudo apt-get install python-pip
+$ sudo pip install selenium
+
+Place screenshot.py in the system path, where all users can use it:
+
+$ sudo apt-get install git
+$ git clone https://github.com/seanthegeek/toolbox
+sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
