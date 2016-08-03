@@ -1,6 +1,21 @@
 #!/usr/bin/python
 
-"""Saves a screenshot of a given URL using PhantomJS over Privioxy/Tor"""
+"""Saves full-page a screenshot of a given URL using PhantomJS over
+Privioxy->Tor"""
+
+"""Copyright 2016 Sean Whalen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License."""
 
 from __future__ import print_function, unicode_literals
 
@@ -10,7 +25,7 @@ from selenium import webdriver
 
 __version__ = "1.0.0"
 
-args = ArgumentParser(description=__doc__)
+args = ArgumentParser()
 args.add_argument("URL")
 args.add_argument("--dimensions", "-d", type=str, default="1024x768",
                   help="Sets the browser window size - 1024x768 by default")
