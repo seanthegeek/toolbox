@@ -54,7 +54,7 @@ if not url.lower().startswith("http://") and not url.lower().startswith("https:/
 
 dimensions = args.dimensions.lower().split("x")
 if len(dimensions) != 2:
-    raise ValueError("Dimensions must be a withxheight string")
+    raise ValueError("Dimensions must be a widthxheight string")
 
 dimensions = list(map(lambda value: int(value), dimensions))
  
