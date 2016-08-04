@@ -1,9 +1,10 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+from __future__ import print_function, unicode_literals
 
 """Saves full-page a screenshot of a given URL using PhantomJS over
 Privioxy->Tor"""
-
-from __future__ import print_function, unicode_literals
 
 """Copyright 2016 Sean Whalen
 
