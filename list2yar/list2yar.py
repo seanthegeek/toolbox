@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from __future__ import print_function, unicode_literals
-
 """A simple script that generates a yara rule from a list of strings. It's
 useful for things like generating rules based on lists of domains."""
+
+from __future__ import print_function, unicode_literals
 
 """Copyright 2016 Sean Whalen
 
