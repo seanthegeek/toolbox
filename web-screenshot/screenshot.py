@@ -73,8 +73,8 @@ screenshot_filename = "{0}.png".format(filename)
 driver = webdriver.PhantomJS(service_args=service_args)
 driver.set_window_size(dimensions[0], dimensions[1])
 driver.get(url)
-driver.save_screenshot(screenshot_filename)
 
+driver.save_screenshot(screenshot_filename)
 print("Screenshot saved as {0}".format(screenshot_filename))
 
 if args.source:
