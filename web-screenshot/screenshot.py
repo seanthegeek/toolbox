@@ -6,6 +6,10 @@ Privioxy->Tor"""
 
 from __future__ import print_function, unicode_literals
 
+from argparse import ArgumentParser
+
+from selenium import webdriver
+
 """Copyright 2016 Sean Whalen
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,20 +24,19 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License."""
 
-from argparse import ArgumentParser
-
-from selenium import webdriver
 
 __version__ = "1.0.0"
 
 args = ArgumentParser(description=__doc__)
 args.add_argument("URL")
+args.add_argument('--version', "-V", action='version', version=__version__)
+args.add_argument("--source", "-s", action="store_true", help="save page source")
 args.add_argument("--dimensions", "-d", type=str, default="1024x768",
-                  help="Sets the browser window size - 1024x768 by default")
+                  help="set the browser window size - 1024x768 by default")
 args.add_argument("--user-agent", "-u", nargs="?",
-                  help="Overrides the default user-agent string")
+                  help="override the default user-agent string")
 args.add_argument("--output", "-o", nargs="?",
-                  help="Optionally set the output filename")
+                  help="override set the output filename")
 
 args = args.parse_args()
 
@@ -51,7 +54,7 @@ dimensions = args.dimensions.lower().split("x")
 if len(dimensions) != 2:
     raise ValueError("Dimensions must be a withxheight string")
 
-dimensions = map(lambda value: int(value), dimensions)
+dimensions = list(map(lambda value: int(value), dimensions))
 
 user_agent = args.user_agent
 if user_agent:
@@ -65,11 +68,17 @@ if filename is None:
     filename = filename.strip("/")
     filename = filename.replace("/", "_")
 
-filename = "{0}.png".format(filename)
+screenshot_filename = "{0}.png".format(filename)
 
 driver = webdriver.PhantomJS(service_args=service_args)
 driver.set_window_size(dimensions[0], dimensions[1])
 driver.get(url)
-driver.save_screenshot(filename)
+driver.save_screenshot(screenshot_filename)
 
-print("Screenshot saved as {0}".format(filename))
+print("Screenshot saved as {0}".format(screenshot_filename))
+
+if args.source:
+    source_filename = "{0}.html".format(filename)
+    with open(source_filename, "w") as source_file:
+        source_file.write(driver.page_source)
+    print("Page source saved at {0}".format(source_filename))

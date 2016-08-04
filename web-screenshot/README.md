@@ -1,24 +1,25 @@
 screenshot.py
 =============
 
-    usage: screenshot.py [-h] [--dimensions DIMENSIONS]
+    usage: screenshot.py [-h] [--version] [--source] [--dimensions DIMENSIONS]
                          [--user-agent [USER_AGENT]] [--output [OUTPUT]]
                          URL
-
-    Saves full-page a screenshot of a given URL using PhantomJS over
-    Privioxy->Tor
-
+    
+    Saves full-page a screenshot of a given URL using PhantomJS over Privioxy->Tor
+    
     positional arguments:
       URL
-
+    
     optional arguments:
       -h, --help            show this help message and exit
+      --version, -V         show program's version number and exit
+      --source, -s          save page source
       --dimensions DIMENSIONS, -d DIMENSIONS
-                            Sets the browser window size - 1024x768 by default
+                            set the browser window size - 1024x768 by default
       --user-agent [USER_AGENT], -u [USER_AGENT]
-                            Overrides the default user-agent string
+                            override the default user-agent string
       --output [OUTPUT], -o [OUTPUT]
-                            Optionally set the output filename
+                            override set the output filename
 
 
 
@@ -35,10 +36,7 @@ by checking the IP address against the
 sites block these exit nodes, display different content, and/or alert
 server operators.
 
-Rather not use Tor? Skip the Tor and Privoxy parts of the setup, and remove the
-or modify the proxy options as needed in the `service_options` list, which is
-located near the top of `screenshot.py`. In that case, it is strongly advised
-to use a separate, unattributable connection.
+Rather not use Tor? Skip the Tor part of the setup. 
 
 Setup
 -----
@@ -66,9 +64,19 @@ Configure Privioxy
 
     $ sudo nano /etc/privoxy/config
 
-Locate, and uncomment the following line:
+If you want to use Tor, locate and uncomment the following line:
 
     #        forward-socks5t             /     127.0.0.1:9050 .
+
+__Or__, to forward to an HTTP proxy, add a line like this one:
+
+      forward   /      parent-proxy.example.org:8080
+      
+More proxy forwarding configuration examples can be found
+[here](https://www.privoxy.org/user-manual/config.html#FORWARD)
+
+If you just want Privoxy to access the web directly, no configuration
+canges are needed.
 
 Restart Privoxy:
 
@@ -106,9 +114,9 @@ save over it. You will receive a warning about loosing transparency, which is
 exactly what you want. Other image editors like GIMP and Adobe Photoshop
 also have options to disable transparency when saving PNGs.
 
-### Why is Privoxy used in between PhantomJS and Tor?
+### Why is Privoxy used?
 
-While PhantomJS is capable of using Tor's SOCKS5 proxy directly, PhantomJS does
-not return HTTP status codes or error details. Privoxy will return error
-details to the browser as an HTML page, which will be captured in the
-screenshot.
+While PhantomJS is capable of using internet connections, HTTP proxies,
+and Tor's SOCKS5 proxy directly, PhantomJS does not return HTTP status
+codes or error details. Privoxy will return error details to the browser
+as an HTML page, which will be captured in the screenshot.

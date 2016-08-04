@@ -6,6 +6,11 @@ useful for things like generating rules based on lists of domains."""
 
 from __future__ import print_function, unicode_literals
 
+from argparse import ArgumentParser
+from os.path import basename
+from collections import OrderedDict
+from datetime import datetime
+
 """Copyright 2016 Sean Whalen
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,16 +25,12 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License."""
 
-from argparse import ArgumentParser
-from os.path import basename
-from collections import OrderedDict
-from datetime import datetime
-
 __version__ = "1.0.0"
 
 args = ArgumentParser(description=__doc__)
-args.add_argument("path", help="The path the the file containing the strings")
-args.add_argument("--output", "-o", nargs="?", help="Override the output path")
+args.add_argument("path", help="the path the the file containing the strings")
+args.add_argument('--version', "-V", action='version', version=__version__)
+args.add_argument("--output", "-o", nargs="?", help="override the output path")
 
 args = args.parse_args()
 
@@ -49,8 +50,8 @@ for key in meta.keys():
 strings_string = ""
 
 for i in range(len(strings)):
-    line = i + 1
-    strings_string += '        ${0} = "{1}" fullword ascii wide nocase\n'.format(line, strings[i])
+    line_number = i + 1
+    strings_string += '        ${0} = "{1}" fullword ascii wide nocase\n'.format(line_number, strings[i])
 
 
 rule_string = """rule {0}
