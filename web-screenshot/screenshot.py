@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+from __future__ import print_function, unicode_literals
+
 """Saves full-page a screenshot of a given URL using PhantomJS over
 Privioxy->Tor"""
-
-from __future__ import print_function, unicode_literals
 
 """Copyright 2016 Sean Whalen
 
@@ -26,7 +26,7 @@ from selenium import webdriver
 
 __version__ = "1.0.0"
 
-args = ArgumentParser()
+args = ArgumentParser(description=__doc__)
 args.add_argument("URL")
 args.add_argument("--dimensions", "-d", type=str, default="1024x768",
                   help="Sets the browser window size - 1024x768 by default")
