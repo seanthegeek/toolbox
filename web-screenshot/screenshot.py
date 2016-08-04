@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-"""Saves full-page a screenshot of a given URL using PhantomJS over
+"""Saves a full-page screenshot of a given URL using PhantomJS over
 Privioxy->Tor"""
 
 from __future__ import print_function, unicode_literals
