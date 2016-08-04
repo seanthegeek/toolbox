@@ -47,12 +47,12 @@ For Debian systems, **excluding** Ubuntu, you can just run:
 
     $ sudo apt-get install tor
 
-For all other Linux distros, follow option two of this guide from the
+For all other Debian-based Linux distros, follow option two of this guide from the
 Tor Project
 
 https://www.torproject.org/docs/debian.html.en
 
-Or for CentOS:
+Or for CentOS/RHEL/Fedora:
 
 https://www.torproject.org/docs/rpms.html.en
 
@@ -73,7 +73,7 @@ __Or__, to forward to an HTTP proxy, add a line like this one:
       forward   /      parent-proxy.example.org:8080
       
 More proxy forwarding configuration examples can be found
-[here](https://www.privoxy.org/user-manual/config.html#FORWARD)
+[here](https://www.privoxy.org/user-manual/config.html#FORWARD).
 
 If you just want Privoxy to access the web directly, no configuration
 canges are needed.
@@ -82,7 +82,7 @@ Restart Privoxy:
 
     $ sudo service privoxy restart
 
-Install PhantomJS (the project's static build, **not** from a repository)
+Install PhantomJS (the project's [static build](http://phantomjs.org/download.html), **not** from a repository)
 
     $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
     $ bunzip2 phantomjs-x.x.x-linux-x86_64.tar.bz2
