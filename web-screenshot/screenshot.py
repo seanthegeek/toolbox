@@ -57,11 +57,8 @@ if len(dimensions) != 2:
     raise ValueError("Dimensions must be a withxheight string")
 
 dimensions = list(map(lambda value: int(value), dimensions))
-
-if user_agent:
-    user_agent = args.user_agent
  
-webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = args.user_agent or user_agent
 
 filename = args.output
 if filename is None:
