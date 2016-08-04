@@ -81,4 +81,4 @@ if args.source:
     source_filename = "{0}.html".format(filename)
     with open(source_filename, "w") as source_file:
         source_file.write(driver.page_source)
-    print("Page source saved at {0}".format(source_filename))
+    print("Page source saved as {0}".format(source_filename))
