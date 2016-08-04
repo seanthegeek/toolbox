@@ -46,6 +46,8 @@ service_args = [
     '--ignore-ssl-errors=true'
     ]
 
+# Use a Google Chrome on Windows 7 User-Agent string by default
+user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
 url = args.URL
 if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
     url = "http://{0}".format(url)
@@ -56,9 +58,10 @@ if len(dimensions) != 2:
 
 dimensions = list(map(lambda value: int(value), dimensions))
 
-user_agent = args.user_agent
 if user_agent:
-    webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+    user_agent = args.user_agent
+ 
+ webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
 
 filename = args.output
 if filename is None:
