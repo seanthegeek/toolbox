@@ -5,7 +5,7 @@ screenshot.py
                          [--user-agent [USER_AGENT]] [--output [OUTPUT]]
                          URL
     
-    Saves full-page a screenshot of a given URL using PhantomJS over Privioxy->Tor
+    Saves a full-page screenshot of a given URL using PhantomJS over Privioxy->Tor
     
     positional arguments:
       URL
