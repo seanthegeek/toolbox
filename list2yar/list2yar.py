@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 from __future__ import print_function, unicode_literals
 
 """A simple script that generates a yara rule from a list of strings. It's
