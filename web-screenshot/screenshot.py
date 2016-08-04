@@ -61,7 +61,7 @@ dimensions = list(map(lambda value: int(value), dimensions))
 if user_agent:
     user_agent = args.user_agent
  
- webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
 
 filename = args.output
 if filename is None:
