@@ -7,6 +7,7 @@ Privioxy->Tor"""
 from __future__ import print_function, unicode_literals
 
 from argparse import ArgumentParser
+import io.open
 
 from selenium import webdriver
 
@@ -122,7 +123,7 @@ def _main():
 
     if args.source:
         source_filename = "{0}.html".format(filename)
-        with open(source_filename, "w", encoding="utf-8") as source_file:
+        with io.open(source_filename, "w", encoding="utf-8", errors="ignore") as source_file:
             source_file.write(page_source)
         print("Page source saved as {0}".format(source_filename))
 
