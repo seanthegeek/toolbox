@@ -88,6 +88,9 @@ def _main():
     args = args.parse_args()
 
     url = args.URL
+    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
+        url = "http://{0}".format(url)
+
     screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
 
     filename = args.output
