@@ -27,58 +27,87 @@ limitations under the License."""
 
 __version__ = "1.0.0"
 
-args = ArgumentParser(description=__doc__)
-args.add_argument("URL")
-args.add_argument('--version', "-V", action='version', version=__version__)
-args.add_argument("--source", "-s", action="store_true", help="save page source")
-args.add_argument("--dimensions", "-d", type=str, default="1024x768",
-                  help="set the browser window size - 1024x768 by default")
-args.add_argument("--user-agent", "-u", nargs="?",
-                  help="override the default user-agent string")
-args.add_argument("--output", "-o", nargs="?",
-                  help="override set the output filename")
-
-args = args.parse_args()
-
 service_args = [
     '--proxy=localhost:8118',
     '--proxy-type=http',
     '--ignore-ssl-errors=true'
     ]
 
-# Use a Google Chrome on Windows 7 User-Agent string by default
-user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
-url = args.URL
-if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
-    url = "http://{0}".format(url)
+# Spoof a Google Chrome on Windows 7 User-Agent string by default
+default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
+                     "Chrome/51.0.2704.106 Safari/537.36"
 
-dimensions = args.dimensions.lower().split("x")
-if len(dimensions) != 2:
-    raise ValueError("Dimensions must be a widthxheight string")
 
-dimensions = list(map(lambda value: int(value), dimensions))
- 
-webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = args.user_agent or user_agent
+def capture(url, dimensions="1024x768", user_agent=None):
+    """
+    Captures a screenshot of a web page
 
-filename = args.output
-if filename is None:
-    filename = url.split("://")[1]
-    filename = filename.split("?")[0]
-    filename = filename.split("#")[0]
-    filename = filename.strip("/")
-    filename = filename.replace("/", "_")
+    Args:
+        url (str): The URL of a page
+        dimensions (str): The dimensions of the viewport - 124x768 by default
+        user_agent (str): The user-agent string to use - Spoofs Google Chrome on Windows 7 by default
 
-screenshot_filename = "{0}.png".format(filename)
+    Returns:
+        Screenshot PNG bytes, page source
+    """
+    dimensions = dimensions.lower().split("x")
+    if len(dimensions) != 2:
+        raise ValueError("Dimensions must be a widthxheight string")
 
-driver = webdriver.PhantomJS(service_args=service_args)
-driver.set_window_size(dimensions[0], dimensions[1])
-driver.get(url)
+    dimensions = list(map(lambda value: int(value), dimensions))
 
-driver.save_screenshot(screenshot_filename)
-print("Screenshot saved as {0}".format(screenshot_filename))
+    if not user_agent:
+        user_agent = default_user_agent
 
-if args.source:
-    source_filename = "{0}.html".format(filename)
-    with open(source_filename, "w") as source_file:
-        source_file.write(driver.page_source)
-    print("Page source saved as {0}".format(source_filename))
+    webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+
+    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
+        url = "http://{0}".format(url)
+
+    driver = webdriver.PhantomJS(service_args=service_args)
+    driver.set_window_size(dimensions[0], dimensions[1])
+    driver.get(url)
+    png_bytes = driver.get_screenshot_as_png()
+    page_source = driver.page_source
+
+    return png_bytes, page_source
+
+
+def _main():
+    args = ArgumentParser(description=__doc__)
+    args.add_argument("URL")
+    args.add_argument('--version', "-V", action='version', version=__version__)
+    args.add_argument("--source", "-s", action="store_true", help="save page source")
+    args.add_argument("--dimensions", "-d", type=str, default="1024x768",
+                      help="set the viewport size - 1024x768 by default")
+    args.add_argument("--user-agent", "-u", nargs="?",
+                      help="override the default user-agent string")
+    args.add_argument("--output", "-o", nargs="?",
+                      help="override set the output filename")
+
+    args = args.parse_args()
+
+    url = args.url
+    screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
+
+    filename = args.output
+    if filename is None:
+        filename = url.split("://")[1]
+        filename = filename.split("?")[0]
+        filename = filename.split("#")[0]
+        filename = filename.strip("/")
+        filename = filename.replace("/", "_")
+
+    screenshot_filename = "{0}.png".format(filename)
+    with open(screenshot_filename, "bw") as screenshot_file:
+        screenshot_file.write(screenshot_bytes)
+    print("Screenshot saved as {0}".format(screenshot_filename))
+
+    if args.source:
+        source_filename = "{0}.html".format(filename)
+        with open(source_filename, "w") as source_file:
+            source_file.write(page_source)
+        print("Page source saved as {0}".format(source_filename))
+
+if __name__ == "__main__":
+    _main()
