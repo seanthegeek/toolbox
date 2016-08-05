@@ -7,7 +7,7 @@ Privioxy->Tor"""
 from __future__ import print_function, unicode_literals
 
 from argparse import ArgumentParser
-import io.open
+import io
 
 from selenium import webdriver
 
