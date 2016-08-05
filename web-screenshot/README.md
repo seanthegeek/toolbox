@@ -1,10 +1,6 @@
 screenshot.py
 =============
 
-    usage: screenshot.py [-h] [--version] [--source] [--dimensions DIMENSIONS]
-                     [--user-agent [USER_AGENT]] [--output [OUTPUT]]
-                     URL
-    
     Saves a full-page screenshot of a given URL using PhantomJS over Privioxy->Tor
     
     positional arguments:
@@ -17,7 +13,8 @@ screenshot.py
       --dimensions DIMENSIONS, -d DIMENSIONS
                             set the viewport size - 1024x768 by default
       --user-agent [USER_AGENT], -u [USER_AGENT]
-                            override the default user-agent string
+                            override the user-agent string - Spoofs Google Chrome
+                            on Windows 7 by default
       --output [OUTPUT], -o [OUTPUT]
                             override set the output filename
 
@@ -26,7 +23,7 @@ screenshot.py
 Factions
 --------
 
-def capture(url, dimensions="1024x768", user_agent=None)
+capture(url, dimensions="1024x768", user_agent=None)
     
         Captures a screenshot of a web page
         
@@ -38,6 +35,13 @@ def capture(url, dimensions="1024x768", user_agent=None)
         Returns:
             Screenshot PNG bytes, page source
  
+ 
+Example screenshots
+-------------------
+ 
+ - [check.torproject.org](https://i.imgur.com/z3sRZjU.png)
+ - [useragentstring.com](https://i.imgur.com/8SJ4uwL.png)
+ - [cnn.com](https://i.imgur.com/pYrkAdj.png)
 
 Tor warnings
 ------------

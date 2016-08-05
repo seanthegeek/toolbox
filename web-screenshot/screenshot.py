@@ -81,7 +81,7 @@ def _main():
     args.add_argument("--dimensions", "-d", type=str, default="1024x768",
                       help="set the viewport size - 1024x768 by default")
     args.add_argument("--user-agent", "-u", nargs="?",
-                      help="override the default user-agent string")
+                      help="override the user-agent string - Spoofs Google Chrome on Windows 7 by default")
     args.add_argument("--output", "-o", nargs="?",
                       help="override set the output filename")
 
