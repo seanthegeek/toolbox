@@ -39,9 +39,9 @@ capture(url, dimensions="1024x768", user_agent=None)
 Example screenshots
 -------------------
  
- - [check.torproject.org](https://i.imgur.com/z3sRZjU.png)
- - [useragentstring.com](https://i.imgur.com/8SJ4uwL.png)
- - [cnn.com](https://i.imgur.com/pYrkAdj.png)
+ - [check.torproject.org](https://imgur.com/z3sRZjU)
+ - [useragentstring.com](https://imgur.com/8SJ4uwL)
+ - [cnn.com](https://imgur.com/pYrkAdj)
 
 Tor warnings
 ------------
