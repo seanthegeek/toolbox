@@ -38,6 +38,20 @@ default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.3
                      "Chrome/51.0.2704.106 Safari/537.36"
 
 
+def _check_url(url):
+    """
+    Ensures the URL has a schema by adding http:// to the beginning if it is missing
+    Args:
+        url: A URL with our without a schema
+
+    Returns:
+        A URL with a schema
+
+    """
+    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
+        url = "http://{0}".format(url)
+        return url
+
 def capture(url, dimensions="1024x768", user_agent=None):
     """
     Captures a screenshot of a web page
@@ -61,8 +75,7 @@ def capture(url, dimensions="1024x768", user_agent=None):
 
     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
 
-    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
-        url = "http://{0}".format(url)
+    url = _check_url(url)
 
     driver = webdriver.PhantomJS(service_args=service_args)
     driver.set_window_size(dimensions[0], dimensions[1])
@@ -87,9 +100,7 @@ def _main():
 
     args = args.parse_args()
 
-    url = args.URL
-    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
-        url = "http://{0}".format(url)
+    url = _check_url(args.URL)
 
     screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
 
