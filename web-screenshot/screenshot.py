@@ -50,7 +50,8 @@ def _check_url(url):
     """
     if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
         url = "http://{0}".format(url)
-        return url
+
+    return url
 
 
 def capture(url, dimensions="1024x768", user_agent=None):
@@ -77,12 +78,10 @@ def capture(url, dimensions="1024x768", user_agent=None):
     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
 
     url = _check_url(url)
-
     driver = webdriver.PhantomJS(service_args=service_args)
 
     dimensions = list(map(lambda value: int(value), dimensions))
     driver.set_window_size(dimensions[0], dimensions[1])
-
     driver.get(url)
     png_bytes = driver.get_screenshot_as_png()
     page_source = driver.page_source
