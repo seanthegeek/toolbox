@@ -122,7 +122,7 @@ def _main():
 
     if args.source:
         source_filename = "{0}.html".format(filename)
-        with open(source_filename, "w") as source_file:
+        with open(source_filename, "w", encoding="utf-8") as source_file:
             source_file.write(page_source)
         print("Page source saved as {0}".format(source_filename))
 
