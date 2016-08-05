@@ -52,6 +52,7 @@ def _check_url(url):
         url = "http://{0}".format(url)
         return url
 
+
 def capture(url, dimensions="1024x768", user_agent=None):
     """
     Captures a screenshot of a web page
@@ -78,7 +79,10 @@ def capture(url, dimensions="1024x768", user_agent=None):
     url = _check_url(url)
 
     driver = webdriver.PhantomJS(service_args=service_args)
+
+    dimensions = list(map(lambda value: int(value), dimensions))
     driver.set_window_size(dimensions[0], dimensions[1])
+
     driver.get(url)
     png_bytes = driver.get_screenshot_as_png()
     page_source = driver.page_source
