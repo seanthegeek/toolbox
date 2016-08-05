@@ -87,7 +87,7 @@ def _main():
 
     args = args.parse_args()
 
-    url = args.url
+    url = args.URL
     screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
 
     filename = args.output
