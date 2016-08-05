@@ -116,7 +116,7 @@ def _main():
         filename = filename.replace("/", "_")
 
     screenshot_filename = "{0}.png".format(filename)
-    with open(screenshot_filename, "bw") as screenshot_file:
+    with open(screenshot_filename, "wb") as screenshot_file:
         screenshot_file.write(screenshot_bytes)
     print("Screenshot saved as {0}".format(screenshot_filename))
 
