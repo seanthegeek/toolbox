@@ -126,7 +126,7 @@ def _main():
     args.add_argument("--user-agent", "-u", nargs="?",
                       help="override the user-agent string - Spoofs Google Chrome on Windows 7 by default")
     args.add_argument("--output", "-o", nargs="?",
-                      help="override set the output filename")
+                      help="override the output filename")
 
     args = args.parse_args()
 

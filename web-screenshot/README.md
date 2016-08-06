@@ -16,7 +16,7 @@ screenshot.py
                             override the user-agent string - Spoofs Google Chrome
                             on Windows 7 by default
       --output [OUTPUT], -o [OUTPUT]
-                            override set the output filename
+                            override the output filename
 
 
 
