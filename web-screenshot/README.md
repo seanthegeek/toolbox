@@ -23,7 +23,7 @@ screenshot.py
 Factions
 --------
 
-capture(url, dimensions="1024x768", user_agent=None)
+### capture(url, dimensions="1024x768", user_agent=None)
     
         Captures a screenshot of a web page
         
@@ -35,6 +35,26 @@ capture(url, dimensions="1024x768", user_agent=None)
         Returns:
             Screenshot PNG bytes, page source
  
+ 
+### standardize_url(url)
+
+    Ensures that the URL has a schema by adding http:// to the beginning if it is missing
+    Args:
+        url (str): A URL with our without a schema
+
+    Returns (str):
+        A URL with a schema
+
+
+### url_to_filename(url)
+
+    Generates a filename (without an extension) based on the given URL
+    Args:
+        url (str): The URL to convert
+
+    Returns (str):
+        A filename that closely matches the URL
+
  
 Example screenshots
 -------------------

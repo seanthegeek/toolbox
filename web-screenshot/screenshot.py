@@ -39,13 +39,13 @@ default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.3
                      "Chrome/51.0.2704.106 Safari/537.36"
 
 
-def _check_url(url):
+def standardize_url(url):
     """
-    Ensures the URL has a schema by adding http:// to the beginning if it is missing
+    Ensures that the URL has a schema by adding http:// to the beginning if it is missing
     Args:
-        url: A URL with our without a schema
+        url (str): A URL with our without a schema
 
-    Returns:
+    Returns (str):
         A URL with a schema
 
     """
@@ -53,6 +53,25 @@ def _check_url(url):
         url = "http://{0}".format(url)
 
     return url
+
+
+def url_to_filename(url):
+    """
+    Generates a filename (without an extension) based on the given URL
+    Args:
+        url (str): The URL to convert
+
+    Returns (str):
+        A filename that closely matches the URL
+    """
+
+    filename = url.split("://")[1]
+    filename = filename.split("?")[0]
+    filename = filename.split("#")[0]
+    filename = filename.strip("/")
+    filename = filename.replace("/", "_")
+
+    return filename
 
 
 def capture(url, dimensions="1024x768", user_agent=None):
@@ -78,7 +97,7 @@ def capture(url, dimensions="1024x768", user_agent=None):
 
     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
 
-    url = _check_url(url)
+    url = standardize_url(url)
     driver = webdriver.PhantomJS(service_args=service_args)
 
     dimensions = list(map(lambda value: int(value), dimensions))
@@ -91,6 +110,12 @@ def capture(url, dimensions="1024x768", user_agent=None):
 
 
 def _main():
+    """
+    Run when module is executed as the main module
+    Returns:
+        None
+
+    """
     args = ArgumentParser(description=__doc__)
     args.add_argument("URL")
     args.add_argument('--version', "-V", action='version', version=__version__)
@@ -104,17 +129,13 @@ def _main():
 
     args = args.parse_args()
 
-    url = _check_url(args.URL)
+    url = standardize_url(args.URL)
 
     screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
 
     filename = args.output
     if filename is None:
-        filename = url.split("://")[1]
-        filename = filename.split("?")[0]
-        filename = filename.split("#")[0]
-        filename = filename.strip("/")
-        filename = filename.replace("/", "_")
+        filename = url_to_filename(url)
 
     screenshot_filename = "{0}.png".format(filename)
     with open(screenshot_filename, "wb") as screenshot_file:
