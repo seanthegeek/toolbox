@@ -118,15 +118,15 @@ def _main():
 
     """
     args = ArgumentParser(description=__doc__)
-    args.add_argument("URL")
-    args.add_argument('--version', "-V", action='version', version=__version__)
-    args.add_argument("--source", "-s", action="store_true", help="save page source")
-    args.add_argument("--dimensions", "-d", type=str, default="1024x768",
+    args.add_argument("-V", "--version", action='version', version=__version__)
+    args.add_argument("-s", "--source", action="store_true", help="save page source")
+    args.add_argument("-d", "--dimensions", type=str, default="1024x768",
                       help="set the viewport size - 1024x768 by default")
-    args.add_argument("--user-agent", "-u", nargs="?",
+    args.add_argument("-u", "--user-agent", nargs="?",
                       help="override the user-agent string - Spoofs Google Chrome on Windows 7 by default")
-    args.add_argument("--output", "-o", nargs="?",
+    args.add_argument("-o", "--output", nargs="?",
                       help="override the output filename")
+    args.add_argument("URL")
 
     args = args.parse_args()
 

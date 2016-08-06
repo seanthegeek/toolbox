@@ -1,6 +1,10 @@
 screenshot.py
 =============
 
+    usage: screenshot.py [-h] [-V] [-s] [-d DIMENSIONS] [-u [USER_AGENT]]
+                         [-o [OUTPUT]]
+                         URL
+    
     Saves a full-page screenshot of a given URL using PhantomJS over Privioxy->Tor
     
     positional arguments:
@@ -8,14 +12,14 @@ screenshot.py
     
     optional arguments:
       -h, --help            show this help message and exit
-      --version, -V         show program's version number and exit
-      --source, -s          save page source
-      --dimensions DIMENSIONS, -d DIMENSIONS
+      -V, --version         show program's version number and exit
+      -s, --source          save page source
+      -d DIMENSIONS, --dimensions DIMENSIONS
                             set the viewport size - 1024x768 by default
-      --user-agent [USER_AGENT], -u [USER_AGENT]
+      -u [USER_AGENT], --user-agent [USER_AGENT]
                             override the user-agent string - Spoofs Google Chrome
                             on Windows 7 by default
-      --output [OUTPUT], -o [OUTPUT]
+      -o [OUTPUT], --output [OUTPUT]
                             override the output filename
 
 
