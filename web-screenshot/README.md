@@ -20,8 +20,10 @@ screenshot.py
 
 
 
-Factions
---------
+Functions
+---------
+
+The module also provides functions for automation.
 
 ### capture(url, dimensions="1024x768", user_agent=None)
     
