@@ -42,8 +42,9 @@ default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.3
 def standardize_url(url):
     """
     Ensures that the URL has a schema by adding http:// to the beginning if it is missing
+
     Args:
-        url (str): A URL with our without a schema
+        url (str): A URL with or without a schema
 
     Returns (str):
         A URL with a schema
