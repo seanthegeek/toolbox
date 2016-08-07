@@ -118,7 +118,7 @@ If you want to use Tor, locate and uncomment the following line:
 
 __Or__, to forward to an HTTP proxy, add a line like this one:
 
-      forward   /      parent-proxy.example.org:8080
+    forward   /      parent-proxy.example.org:8080
       
 More proxy forwarding configuration examples can be found
 [here](https://www.privoxy.org/user-manual/config.html#FORWARD).
