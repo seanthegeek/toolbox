@@ -138,7 +138,7 @@ Install PhantomJS (the project's [static build](http://phantomjs.org/download.ht
 
 Install Selenium for Python
 
-    $ sudo apt-get install python-pip
+    $ sudo apt-get install python-pip fontconfig
     $ sudo pip install selenium
 
 Place `screenshot.py` in the system path, where all users can use it:
