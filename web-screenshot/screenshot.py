@@ -66,7 +66,7 @@ def url_to_filename(url):
         A filename that closely matches the URL
     """
 
- .  url = _standardize_url(url)
+    url = _standardize_url(url)
     filename = url.split("://")[1]
     filename = filename.split("?")[0]
     filename = filename.split("#")[0]
@@ -129,6 +129,7 @@ def _main():
     args.add_argument("URL")
 
     args = args.parse_args()
+    url = args.URL
 
     screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
 
@@ -143,6 +144,7 @@ def _main():
 
     if args.source:
         source_filename = "{0}.html".format(filename)
+        # Use io.open to support utf-8 output in Python 2
         with io.open(source_filename, "w", encoding="utf-8", errors="ignore") as source_file:
             source_file.write(page_source)
         print("Page source saved as {0}".format(source_filename))
