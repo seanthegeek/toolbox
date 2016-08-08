@@ -40,18 +40,6 @@ The module also provides functions for automation.
     
         Returns:
             Screenshot PNG bytes, page source
- 
- 
-### standardize_url(url)
-
-    Ensures that the URL has a schema by adding http:// to the beginning if it is missing
-
-    Args:
-        url (str): A URL with or without a schema
-
-    Returns (str):
-        A URL with a schema
-
 
 ### url_to_filename(url)
 
