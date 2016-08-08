@@ -39,7 +39,7 @@ default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.3
                      "Chrome/51.0.2704.106 Safari/537.36"
 
 
-def standardize_url(url):
+def _standardize_url(url):
     """
     Ensures that the URL has a schema by adding http:// to the beginning if it is missing
 
@@ -66,6 +66,7 @@ def url_to_filename(url):
         A filename that closely matches the URL
     """
 
+ .  url = _standardize_url(url)
     filename = url.split("://")[1]
     filename = filename.split("?")[0]
     filename = filename.split("#")[0]
@@ -87,6 +88,7 @@ def capture(url, dimensions="1024x768", user_agent=None):
     Returns:
         Screenshot PNG bytes, page source
     """
+    url = _standardize_url(url)
     dimensions = dimensions.lower().split("x")
     if len(dimensions) != 2:
         raise ValueError("Dimensions must be a widthxheight string")
@@ -97,8 +99,6 @@ def capture(url, dimensions="1024x768", user_agent=None):
         user_agent = default_user_agent
 
     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
-
-    url = standardize_url(url)
     driver = webdriver.PhantomJS(service_args=service_args)
 
     dimensions = list(map(lambda value: int(value), dimensions))
