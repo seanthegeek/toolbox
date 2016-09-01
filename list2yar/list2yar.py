@@ -40,7 +40,7 @@ meta = OrderedDict(generated_by="list2yar v{0}".format(__version__),
 rule_name = basename(args.path).split(".")[0]
 
 with open(args.path) as input_file:
-    strings = list(map(lambda line: line.strip(), input_file.readlines()))
+    strings = sorted(list(map(lambda line: line.strip(), input_file.readlines())))
 
 meta_string = ""
 
