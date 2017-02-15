@@ -14,6 +14,7 @@ screenshot.py
       -h, --help            show this help message and exit
       -V, --version         show program's version number and exit
       -s, --source          save page source
+      -t, --tor          use Privioxy->Tor
       -d DIMENSIONS, --dimensions DIMENSIONS
                             set the viewport size - 1024x768 by default
       -u [USER_AGENT], --user-agent [USER_AGENT]
