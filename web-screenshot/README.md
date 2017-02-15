@@ -5,7 +5,7 @@ screenshot.py
                          [-o [OUTPUT]]
                          URL
     
-    Saves a full-page screenshot of a given URL using PhantomJS over Privioxy->Tor
+    Saves a full-page screenshot of a given URL using PhantomJS
     
     positional arguments:
       URL
@@ -29,7 +29,7 @@ Functions
 
 The module also provides functions for automation.
 
-### capture(url, dimensions="1024x768", user_agent=None)
+### capture(url, dimensions="1024x768", user_agent=None, tor=False)
     
         Captures a screenshot of a web page
         
@@ -37,6 +37,7 @@ The module also provides functions for automation.
             url (str): The URL of a page
             dimensions (str): The dimensions of the viewport - 124x768 by default
             user_agent (str): The user-agent string to use - Spoofs Google Chrome on Windows 7 by default
+            tor (bool): Use Tor
     
         Returns:
             Screenshot PNG bytes, page source

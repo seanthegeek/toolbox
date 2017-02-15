@@ -28,12 +28,6 @@ limitations under the License."""
 
 __version__ = "1.0.0"
 
-service_args = [
-    '--proxy=localhost:8118',
-    '--proxy-type=http',
-    '--ignore-ssl-errors=true'
-    ]
-
 # Spoof a Google Chrome on Windows 7 User-Agent string by default
 default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
                      "Chrome/51.0.2704.106 Safari/537.36"
@@ -76,7 +70,7 @@ def url_to_filename(url):
     return filename
 
 
-def capture(url, dimensions="1024x768", user_agent=None):
+def capture(url, dimensions="1024x768", user_agent=None, tor=False):
     """
     Captures a screenshot of a web page
 
@@ -84,6 +78,7 @@ def capture(url, dimensions="1024x768", user_agent=None):
         url (str): The URL of a page
         dimensions (str): The dimensions of the viewport - 124x768 by default
         user_agent (str): The user-agent string to use - Spoofs Google Chrome on Windows 7 by default
+        tor (bool): Use Privioxy->Tor
 
     Returns:
         Screenshot PNG bytes, page source
@@ -99,6 +94,13 @@ def capture(url, dimensions="1024x768", user_agent=None):
         user_agent = default_user_agent
 
     webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+    service_args = [
+        '--ignore-ssl-errors=true'
+    ]
+    if tor:
+        service_args += ['--proxy=localhost:8118',
+                         '--proxy-type=http']
+
     driver = webdriver.PhantomJS(service_args=service_args)
 
     dimensions = list(map(lambda value: int(value), dimensions))
@@ -120,6 +122,7 @@ def _main():
     args = ArgumentParser(description=__doc__)
     args.add_argument("-V", "--version", action='version', version=__version__)
     args.add_argument("-s", "--source", action="store_true", help="save page source")
+    args.add_argument("-t", "--tor", action="store_true", help="use Tor")
     args.add_argument("-d", "--dimensions", type=str, default="1024x768",
                       help="set the viewport size - 1024x768 by default")
     args.add_argument("-u", "--user-agent", nargs="?",
@@ -131,7 +134,7 @@ def _main():
     args = args.parse_args()
     url = args.URL
 
-    screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent)
+    screenshot_bytes, page_source = capture(url, dimensions=args.dimensions, user_agent=args.user_agent, tor=args.tor)
 
     filename = args.output
     if filename is None:
