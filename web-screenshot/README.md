@@ -123,7 +123,7 @@ Restart Privoxy:
 Install PhantomJS (the project's [static build](http://phantomjs.org/download.html), **not** from a repository)
 
     $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
-    $ tar -xfj phantomjs-x.x.x-linux-x86_64.tar.bz2
+    $ tar -xjf phantomjs-x.x.x-linux-x86_64.tar.bz2
     $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/bin
 
 Install Selenium for Python
