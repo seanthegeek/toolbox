@@ -4,12 +4,12 @@ screenshot.py
     usage: screenshot.py [-h] [-V] [-s] [-d DIMENSIONS] [-u [USER_AGENT]]
                          [-o [OUTPUT]]
                          URL
-    
+
     Saves a full-page screenshot of a given URL using PhantomJS
-    
+
     positional arguments:
       URL
-    
+
     optional arguments:
       -h, --help            show this help message and exit
       -V, --version         show program's version number and exit
@@ -31,15 +31,15 @@ Functions
 The module also provides functions for automation.
 
 ### capture(url, dimensions="1024x768", user_agent=None, tor=False)
-    
+
         Captures a screenshot of a web page
-        
+
         Args:
             url (str): The URL of a page
             dimensions (str): The dimensions of the viewport - 124x768 by default
             user_agent (str): The user-agent string to use - Spoofs Google Chrome on Windows 7 by default
             tor (bool): Use Tor
-    
+
         Returns:
             Screenshot PNG bytes, page source
 
@@ -53,10 +53,10 @@ The module also provides functions for automation.
     Returns (str):
         A filename that closely matches the URL
 
- 
+
 Example screenshots
 -------------------
- 
+
  - [check.torproject.org](https://imgur.com/z3sRZjU)
  - [useragentstring.com](https://imgur.com/8SJ4uwL)
  - [cnn.com](https://imgur.com/pYrkAdj)
@@ -74,7 +74,7 @@ by checking the IP address against the
 sites block these exit nodes, display different content, and/or alert
 server operators.
 
-Rather not use Tor? Skip the Tor part of the setup. 
+Rather not use Tor? Skip the Tor part of the setup.
 
 Setup
 -----
@@ -109,7 +109,7 @@ If you want to use Tor, locate and uncomment the following line:
 __Or__, to forward to an HTTP proxy, add a line like this one:
 
     forward   /      parent-proxy.example.org:8080
-      
+
 More proxy forwarding configuration examples can be found
 [here](https://www.privoxy.org/user-manual/config.html#FORWARD).
 
@@ -124,18 +124,18 @@ Install PhantomJS (the project's [static build](http://phantomjs.org/download.ht
 
     $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
     $ tar -xjf phantomjs-x.x.x-linux-x86_64.tar.bz2
-    $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/bin
+    $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/local/bin
 
 Install Selenium for Python
 
-    $ sudo apt-get install python-pip fontconfig
+    $ sudo apt-get install python3-pip fontconfig
     $ sudo pip install selenium
 
 Place `screenshot.py` in the system path, where all users can use it:
 
     $ sudo apt-get install git
     $ git clone https://github.com/seanthegeek/toolbox
-    $ sudo cp toolbox/web-screenshot/screenshot.py /usr/bin
+    $ sudo cp toolbox/web-screenshot/screenshot.py /usr/local/bin
 
 FAQ
 ---
