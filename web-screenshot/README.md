@@ -61,8 +61,30 @@ Example screenshots
  - [useragentstring.com](https://imgur.com/8SJ4uwL)
  - [cnn.com](https://imgur.com/pYrkAdj)
 
-Tor warnings
-------------
+Setup
+-----
+
+Install PhantomJS (the project's [static build](http://phantomjs.org/download.html), **not** from a repository)
+
+    $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
+    $ tar -xjf phantomjs-x.x.x-linux-x86_64.tar.bz2
+    $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/local/bin
+
+Install Selenium for Python
+
+    $ sudo apt-get install python3-pip fontconfig
+    $ sudo pip install selenium
+
+Place `screenshot.py` in the system path, where all users can use it:
+
+    $ sudo apt-get install git
+    $ git clone https://github.com/seanthegeek/toolbox
+    $ sudo cp toolbox/web-screenshot/screenshot.py /usr/local/bin
+
+Optional Tor setup
+~~~~~~~~~~~~~~~~~~
+
+Keep these warnings in mind when using Tor:
 
 - Most corporate, university, and other shared networks have policies
 prohibiting the use of Tor for security reasons. Tor can help keep what you are
@@ -75,11 +97,6 @@ sites block these exit nodes, display different content, and/or alert
 server operators.
 
 Rather not use Tor? Skip the Tor part of the setup.
-
-Setup
------
-
-Install Tor.
 
 For Debian systems, **excluding** Ubuntu, you can just run:
 
@@ -119,23 +136,6 @@ canges are needed.
 Restart Privoxy:
 
     $ sudo service privoxy restart
-
-Install PhantomJS (the project's [static build](http://phantomjs.org/download.html), **not** from a repository)
-
-    $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
-    $ tar -xjf phantomjs-x.x.x-linux-x86_64.tar.bz2
-    $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/local/bin
-
-Install Selenium for Python
-
-    $ sudo apt-get install python3-pip fontconfig
-    $ sudo pip install selenium
-
-Place `screenshot.py` in the system path, where all users can use it:
-
-    $ sudo apt-get install git
-    $ git clone https://github.com/seanthegeek/toolbox
-    $ sudo cp toolbox/web-screenshot/screenshot.py /usr/local/bin
 
 FAQ
 ---
