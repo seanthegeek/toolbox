@@ -81,8 +81,7 @@ Place `screenshot.py` in the system path, where all users can use it:
     $ git clone https://github.com/seanthegeek/toolbox
     $ sudo cp toolbox/web-screenshot/screenshot.py /usr/local/bin
 
-Optional Tor setup
-~~~~~~~~~~~~~~~~~~
+### Optional Tor setup
 
 Keep these warnings in mind when using Tor:
 
