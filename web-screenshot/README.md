@@ -14,7 +14,6 @@ screenshot.py
       -h, --help            show this help message and exit
       -V, --version         show program's version number and exit
       -s, --source          save page source
-      -t, --tor          use Privioxy->Tor
       -d DIMENSIONS, --dimensions DIMENSIONS
                             set the viewport size - 1024x768 by default
       -u [USER_AGENT], --user-agent [USER_AGENT]
@@ -64,13 +63,32 @@ Example screenshots
 Setup
 -----
 
-Install PhantomJS (the project's [static build](http://phantomjs.org/download.html), **not** from a repository)
+Install PhantomJS (the project's 
+[static build](http://phantomjs.org/download.html), **not** from a repository):
 
     $ wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-x.x.x-linux-x86_64.tar.bz2
     $ tar -xjf phantomjs-x.x.x-linux-x86_64.tar.bz2
     $ sudo cp phantomjs-x.x.x-linux-x86_64/bin/phantomjs /usr/local/bin
 
-Install Selenium for Python
+Install Privioxy
+
+    $ sudo apt-get install privoxy
+    
+If you just want Privoxy to access the web directly, no configuration
+changes are needed.
+
+To forward to an HTTP proxy, add a line like this one:
+
+    forward   /      parent-proxy.example.org:8080
+
+More proxy forwarding configuration examples can be found
+[here](https://www.privoxy.org/user-manual/config.html#FORWARD).
+
+Restart Privoxy:
+
+    $ sudo service privoxy restart
+
+Install Selenium for Python:
 
     $ sudo apt-get install python3-pip fontconfig
     $ sudo pip install selenium
@@ -95,8 +113,6 @@ by checking the IP address against the
 sites block these exit nodes, display different content, and/or alert
 server operators.
 
-Rather not use Tor? Skip the Tor part of the setup.
-
 For Debian systems, **excluding** Ubuntu, you can just run:
 
     $ sudo apt-get install tor
@@ -110,10 +126,6 @@ Or for CentOS/RHEL/Fedora:
 
 https://www.torproject.org/docs/rpms.html.en
 
-Install Privioxy
-
-    $ sudo apt-get install privoxy
-
 Configure Privioxy
 
     $ sudo nano /etc/privoxy/config
@@ -122,19 +134,10 @@ If you want to use Tor, locate and uncomment the following line:
 
     #        forward-socks5t             /     127.0.0.1:9050 .
 
-__Or__, to forward to an HTTP proxy, add a line like this one:
-
-    forward   /      parent-proxy.example.org:8080
-
-More proxy forwarding configuration examples can be found
-[here](https://www.privoxy.org/user-manual/config.html#FORWARD).
-
-If you just want Privoxy to access the web directly, no configuration
-canges are needed.
-
 Restart Privoxy:
 
     $ sudo service privoxy restart
+
 
 FAQ
 ---

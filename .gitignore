@@ -91,6 +91,5 @@ ENV/
 # PyCharm project settings
 .idea
 
-*.txt
 *.csv
 *.yar

@@ -26,16 +26,18 @@ See the License for the specific language governing permissions and
 limitations under the License."""
 
 
-__version__ = "1.0.0"
+__version__ = "2.0.0"
 
 # Spoof a Google Chrome on Windows 7 User-Agent string by default
-default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) " \
-                     "Chrome/51.0.2704.106 Safari/537.36"
+default_user_agent = "Mozilla/5.0 (Windows NT 6.1; Win64; x64) " \
+                     "AppleWebKit/537.36 " \
+                     "(KHTML, like Gecko) Chrome/51.0.2704.106 Safari/537.36"
 
 
 def _standardize_url(url):
     """
-    Ensures that the URL has a schema by adding http:// to the beginning if it is missing
+    Ensures that the URL has a schema by adding http:// to the beginning if
+    it is missing
 
     Args:
         url (str): A URL with or without a schema
@@ -44,7 +46,8 @@ def _standardize_url(url):
         A URL with a schema
 
     """
-    if not url.lower().startswith("http://") and not url.lower().startswith("https://"):
+    if not url.lower().startswith(
+            "http://") and not url.lower().startswith("https://"):
         url = "http://{0}".format(url)
 
     return url
@@ -70,15 +73,15 @@ def url_to_filename(url):
     return filename
 
 
-def capture(url, dimensions="1024x768", user_agent=None, tor=False):
+def capture(url, dimensions="1024x768", user_agent=None):
     """
     Captures a screenshot of a web page
 
     Args:
         url (str): The URL of a page
         dimensions (str): The dimensions of the viewport - 124x768 by default
-        user_agent (str): The user-agent string to use - Spoofs Google Chrome on Windows 7 by default
-        tor (bool): Use Privioxy->Tor
+        user_agent (str): The user-agent string to use - Spoofs Google Chrome
+        on Windows 7 by default
 
     Returns:
         Screenshot PNG bytes, page source
@@ -93,13 +96,15 @@ def capture(url, dimensions="1024x768", user_agent=None, tor=False):
     if not user_agent:
         user_agent = default_user_agent
 
-    webdriver.DesiredCapabilities.PHANTOMJS['phantomjs.page.customHeaders.User-Agent'] = user_agent
+    webdriver.DesiredCapabilities.PHANTOMJS[
+        'phantomjs.page.customHeaders.User-Agent'] = user_agent
     service_args = [
         '--ignore-ssl-errors=true'
     ]
-    if tor:
-        service_args += ['--proxy=localhost:8118',
-                         '--proxy-type=http']
+
+    # Always use Privoxy
+    service_args += ['--proxy=localhost:8118',
+                     '--proxy-type=http']
 
     driver = webdriver.PhantomJS(service_args=service_args)
 
